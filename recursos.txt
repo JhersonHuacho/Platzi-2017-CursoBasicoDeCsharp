@@ -1,0 +1,5 @@
+-- shorcut
+cw + tab
+ctor + TAB + TAB
+-- teclado
+ctrl + k, ctrl + d
