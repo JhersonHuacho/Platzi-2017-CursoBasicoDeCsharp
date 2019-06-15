@@ -1,5 +1,6 @@
 01: Introducción a la programación orientada a objetos
 --------------------------------------------------------
+Ctrl + K AND Ctrl + D => para formatear el código
 
 02: 
 --------------------------------------------------------
