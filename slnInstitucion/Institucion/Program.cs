@@ -14,26 +14,25 @@ namespace Institucion
         {
             WriteLine("GESTION DE INSTITUCION");
 
-            Alumno alumno1 = new Alumno()
+            Alumno alumno1 = new Alumno("Juan Carlos", "Ruiz")
             {
-                Id = 1,
-                Nombre = "Juan Carlos",
-                Apellido = "Ruiz",
+                Id = 1,                
                 Edad = 36,
                 Telefono = "944954119",
                 Email = "juank@platzi.com"
             };
 
-            Persona persona1 = new Persona()
+            Profesor profesor1 = new Profesor()
             {
                 Id = 2,
                 Nombre = "Freddy",
                 Apellido = "Vega",
                 Edad = 86,
-                Telefono = "944954119"                
+                Telefono = "944954119",
+                Catedra = "Programación"
             };
 
-            persona1 = alumno1;           
+            WriteLine(Persona.ContadorPersonas);
 
             ReadLine();
         }
