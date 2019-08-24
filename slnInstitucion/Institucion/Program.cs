@@ -53,6 +53,9 @@ namespace Institucion
             {
                 Console.WriteLine($"Tipo: {persona.GetType()}");
                 Console.WriteLine(persona.ConstruirResumen());
+
+                IEnteInstituto ente = persona;
+                ente.ConstruirLlaveSecreta("Hola");
             }
 
             ReadLine();

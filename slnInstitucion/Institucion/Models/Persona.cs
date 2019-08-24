@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Institucion.Models
 {
-    public abstract class Persona
+    public abstract class Persona : IEnteInstituto
     {
         public static int ContadorPersonas = 0;
         public int Id { get; set; }
@@ -19,6 +19,9 @@ namespace Institucion.Models
         {
             get { return $"{Nombre} {Apellido}"; } // string literal
         }
+
+        public string CodigoInterno { get; set; }
+
         // si lo dejamos como publico, este constructor se ejecuta cada vez que cree un objeto Persona,
         // no solo la primera vez.
         public Persona()
@@ -33,6 +36,13 @@ namespace Institucion.Models
 
         //}
 
-        public abstract string ConstruirResumen();        
+        public abstract string ConstruirResumen();
+
+        public string ConstruirLlaveSecreta(string nombreEnte)
+        {
+            var rnd = new Random();           
+
+            return rnd.Next(1, 9998945).ToString();
+        }
     }
 }
