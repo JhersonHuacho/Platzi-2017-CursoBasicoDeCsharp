@@ -58,6 +58,32 @@ namespace Institucion
                 ente.ConstruirLlaveSecreta("Hola");
             }
 
+            Console.WriteLine("S T R U C T S");
+            CursoStruct c = new CursoStruct(70);
+            c.Curso = "101-B";
+
+            CursoStruct newC = new CursoStruct();
+            newC.Curso = "564-A";
+
+            var cursoFreak = c;
+            cursoFreak.Curso = "666-G";
+
+            Console.WriteLine($"Curso c = {c.Curso}");
+            Console.WriteLine($"Curso Freak = {cursoFreak.Curso}");
+            Console.WriteLine("");
+
+            Console.WriteLine("C L A S E S");
+            CursoClass c_class = new CursoClass(70);
+            c_class.Curso = "101-B";
+
+            //CursoClass newC_class = new CursoClass();
+            //newC_class.Curso = "564-A";
+
+            var cursoFreak_class = c_class;
+            cursoFreak_class.Curso = "666-G";
+
+            Console.WriteLine($"Curso c = {c_class.Curso}");
+            Console.WriteLine($"Curso Freak = {cursoFreak_class.Curso}");
             ReadLine();
         }
     }
