@@ -84,6 +84,28 @@ namespace Institucion
 
             Console.WriteLine($"Curso c = {c_class.Curso}");
             Console.WriteLine($"Curso Freak = {cursoFreak_class.Curso}");
+
+            Console.WriteLine("");
+            Console.WriteLine("E N U M E R A C I O N E S");
+
+            var alumnoEstado = new Alumno("Freddy", "Vega")
+            {
+                Id = 22,                
+                Edad = 86,
+                Telefono = "944954119",            
+                Estado = EstadosAlumno.Activo
+            };
+            Persona personax = alumnoEstado;
+            IEnteInstituto iei = alumnoEstado;
+
+            Console.WriteLine("Estado de Alumno" + alumnoEstado.Estado);
+            Console.WriteLine($"Tipo: {typeof(EstadosAlumno)}");
+            Console.WriteLine($"Tipo: {typeof(Alumno)}");
+            Console.WriteLine($"Tipo: {iei.GetType()}");
+            Console.WriteLine($"Tipo: {alumnoEstado.GetType()}");
+            Console.WriteLine($"Tipo: {personax.GetType()}");
+            Console.WriteLine($"Nombre: {nameof(Alumno)}");
+            Console.WriteLine($"Tamaño: {sizeof(int)}");
             ReadLine();
         }
     }
