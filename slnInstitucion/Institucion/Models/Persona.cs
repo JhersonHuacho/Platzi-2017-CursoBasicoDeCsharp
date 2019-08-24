@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Institucion.Models
 {
-    public class Persona
+    public abstract class Persona
     {
         public static int ContadorPersonas = 0;
         public int Id { get; set; }
@@ -15,11 +15,11 @@ namespace Institucion.Models
         public short Edad { get; set; }
         public string Telefono { get; set; }
         protected int Inasistencias { get; set; }
-        public string NombreCompleto
+        public virtual string NombreCompleto
         {
             get { return $"{Nombre} {Apellido}"; } // string literal
         }
-        // si lo dejamos como publico, este constructor se ejeucta cada vez que cree un objeto Persona,
+        // si lo dejamos como publico, este constructor se ejecuta cada vez que cree un objeto Persona,
         // no solo la primera vez.
         public Persona()
         {
@@ -32,5 +32,7 @@ namespace Institucion.Models
         //{
 
         //}
+
+        public abstract string ConstruirResumen();        
     }
 }

@@ -14,7 +14,11 @@ namespace Institucion
         {
             WriteLine("GESTION DE INSTITUCION");
 
-            Alumno alumno1 = new Alumno("Juan Carlos", "Ruiz")
+            //Persona obj = new Persona();
+
+            Persona[] lista = new Persona[3];
+
+            lista[0] = new Alumno("Juan Carlos", "Ruiz")
             {
                 Id = 1,                
                 Edad = 36,
@@ -22,7 +26,7 @@ namespace Institucion
                 Email = "juank@platzi.com"
             };
 
-            Profesor profesor1 = new Profesor()
+            lista[1] = new Profesor()
             {
                 Id = 2,
                 Nombre = "Freddy",
@@ -32,7 +36,24 @@ namespace Institucion
                 Catedra = "Programación"
             };
 
+            lista[2] = new Profesor()
+            {
+                Id = 3,
+                Nombre = "William",
+                Apellido = "Torvalds",
+                Edad = 86,
+                Telefono = "944954119",
+                Catedra = "Algebra"
+            };
+
             WriteLine(Persona.ContadorPersonas);
+            Console.WriteLine("Resumenes");
+
+            foreach (Persona persona in lista)
+            {
+                Console.WriteLine($"Tipo: {persona.GetType()}");
+                Console.WriteLine(persona.ConstruirResumen());
+            }
 
             ReadLine();
         }

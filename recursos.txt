@@ -1,5 +1,10 @@
 -- shorcut
 cw + tab
-ctor + TAB + TAB
+ctor + TAB + TAB => para crear constructor
 -- teclado
 ctrl + k, ctrl + d
+
+Formatear lineas de codigo
+ctrl+k ctrl + d
+Comentar lineas de codigo seleccionadas
+ctrl+k ctrl+c

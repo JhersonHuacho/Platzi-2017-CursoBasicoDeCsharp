@@ -8,7 +8,8 @@ namespace Institucion.Models
 {
     class Alumno : Persona
     {
-        public string Email { get; set; }        
+        public string Email { get; set; }
+        public string NickName { get; set; }
         public string ListaInasistencias()
         {
             return Inasistencias.ToString();
@@ -18,5 +19,20 @@ namespace Institucion.Models
             Nombre = nombre;
             Apellido = apellido;
         }
+
+        public override string ConstruirResumen()
+        {
+            return $"{NombreCompleto}, {NickName}, {Telefono}";
+        }
+        // 2 formas de escribir el metodo NombreCompleto
+        public override string NombreCompleto => base.NombreCompleto.ToUpper();
+        //public override string NombreCompleto
+        //{
+        //    get
+        //    {
+        //        //return base.NombreCompleto;
+        //        return "INFORMACIÓN BLOQUEADA";
+        //    }
+        //}
     }
 }
