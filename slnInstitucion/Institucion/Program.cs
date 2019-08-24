@@ -12,6 +12,35 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            var alumno = new Alumno("Victor", "Perez");
+            var profesor = new Profesor();
+            Persona persona = profesor;
+
+            alumno = (Alumno)persona;
+            if (persona is Profesor)
+            {
+                var profe = (Profesor)persona;
+                ///...
+            }
+
+            var tmpProfe = persona as Profesor;            
+            if (tmpProfe != null)
+            {
+                //...
+            }
+            ReadLine();
+        }
+
+        [Flags]
+        enum Banderas
+        {
+            NOMBRE_COMPLETO = 1,
+            CURSO_COMPLETO = 2,
+            TODO_COMPLETO = 3,
+            HABILITA_RESUMEN = 4
+        }
+        public void Rutina1()
+        {
             WriteLine("GESTION DE INSTITUCION");
 
             //Persona obj = new Persona();
@@ -20,7 +49,7 @@ namespace Institucion
 
             lista[0] = new Alumno("Juan Carlos", "Ruiz")
             {
-                Id = 1,                
+                Id = 1,
                 Edad = 36,
                 Telefono = "944954119",
                 Email = "juank@platzi.com"
@@ -90,9 +119,9 @@ namespace Institucion
 
             var alumnoEstado = new Alumno("Freddy", "Vega")
             {
-                Id = 22,                
+                Id = 22,
                 Edad = 86,
-                Telefono = "944954119",            
+                Telefono = "944954119",
                 Estado = EstadosAlumno.Activo
             };
             Persona personax = alumnoEstado;
@@ -106,7 +135,22 @@ namespace Institucion
             Console.WriteLine($"Tipo: {personax.GetType()}");
             Console.WriteLine($"Nombre: {nameof(Alumno)}");
             Console.WriteLine($"Tamaño: {sizeof(int)}");
-            ReadLine();
+        }
+
+        private static void Rutina2()
+        {
+            short s = 32000;
+            int i = 33000;
+            float f = 2.35f;
+            double dou = 0.0004d;
+            decimal d = 0.000000000023m;
+
+            WriteLine(i);
+            s = (short)i;
+            WriteLine(s);
+            WriteLine(f);
+            i = (int)f;
+            WriteLine(i);
         }
     }
 }
