@@ -12,6 +12,35 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            Persona[] arregloPersona = new Persona[5];
+
+            var tam = arregloPersona.Length;
+
+            arregloPersona[0] = new Alumno("Francisco", "Huacho") { NickName = "pancho" };
+            arregloPersona[1] = new Profesor() { Nombre="Alberto", Apellido="X" };
+            arregloPersona[2] = new Alumno("Fernando", "Pedroza");
+            arregloPersona[3] = new Profesor() { Nombre = "Mag", Apellido = "X" };
+            arregloPersona[4] = new Alumno("Neto", "Orbe");
+            //arregloPersona[5] = new Profesor() { Nombre = "Juan", Apellido = "X" };
+
+            for (int i = 0; i < arregloPersona.Length; i++)
+            {
+                if(arregloPersona[i] is Alumno)
+                {
+                    var al = (Alumno)arregloPersona[i];
+                    Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
+                }
+                else
+                {
+                    WriteLine(arregloPersona[i].NombreCompleto);
+                }                
+            }
+
+            ReadLine();
+        }
+
+        private static void Rutina3()
+        {
             var alumno = new Alumno("Victor", "Perez");
             var profesor = new Profesor();
             Persona persona = profesor;
@@ -23,12 +52,11 @@ namespace Institucion
                 ///...
             }
 
-            var tmpProfe = persona as Profesor;            
+            var tmpProfe = persona as Profesor;
             if (tmpProfe != null)
             {
                 //...
             }
-            ReadLine();
         }
 
         [Flags]
