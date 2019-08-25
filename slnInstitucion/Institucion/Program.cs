@@ -1,5 +1,6 @@
 ﻿using Institucion.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,49 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            // Listas
+            ArrayList listaPersonas = new ArrayList();            
+
+            listaPersonas.Add(new Alumno("Francisco", "Huacho") { NickName = "pancho" });
+            listaPersonas.Add(new Profesor() { Nombre="Alberto", Apellido="X" });
+            listaPersonas.Add(new Alumno("Fernando", "Pedroza"));
+            listaPersonas.Add(new Profesor() { Nombre = "Mag", Apellido = "X" });
+            listaPersonas.Add(new Alumno("Neto", "Orbe"));                        
+
+            foreach (var persona in listaPersonas)
+            {
+                if (persona is Alumno)
+                {
+                    var al = (Alumno) persona;
+                    Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
+                }
+                else
+                {
+                    var per = persona as Persona;
+
+                    if (per != null)    
+                        WriteLine(per.NombreCompleto);
+                }
+            }
+
+            // Listas Genericas
+            List<Persona> listaDePersonas = new List<Persona>();
+            listaDePersonas.Add(new Alumno("Francisco", "Huacho") { NickName = "pancho" });
+            listaDePersonas.Add(new Profesor() { Nombre = "Alberto", Apellido = "X" });
+            listaDePersonas.Add(new Alumno("Fernando", "Pedroza"));
+            listaDePersonas.Add(new Profesor() { Nombre = "Mag", Apellido = "X" });
+            listaDePersonas.Add(new Alumno("Neto", "Orbe"));
+
+            ReadLine();
+        }
+        private static void Rutina4()
+        {
             Persona[] arregloPersona = new Persona[5];
 
             var tam = arregloPersona.Length;
 
             arregloPersona[0] = new Alumno("Francisco", "Huacho") { NickName = "pancho" };
-            arregloPersona[1] = new Profesor() { Nombre="Alberto", Apellido="X" };
+            arregloPersona[1] = new Profesor() { Nombre = "Alberto", Apellido = "X" };
             arregloPersona[2] = new Alumno("Fernando", "Pedroza");
             arregloPersona[3] = new Profesor() { Nombre = "Mag", Apellido = "X" };
             arregloPersona[4] = new Alumno("Neto", "Orbe");
@@ -25,7 +63,7 @@ namespace Institucion
 
             for (int i = 0; i < arregloPersona.Length; i++)
             {
-                if(arregloPersona[i] is Alumno)
+                if (arregloPersona[i] is Alumno)
                 {
                     var al = (Alumno)arregloPersona[i];
                     Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
@@ -33,12 +71,9 @@ namespace Institucion
                 else
                 {
                     WriteLine(arregloPersona[i].NombreCompleto);
-                }                
+                }
             }
-
-            ReadLine();
         }
-
         private static void Rutina3()
         {
             var alumno = new Alumno("Victor", "Perez");

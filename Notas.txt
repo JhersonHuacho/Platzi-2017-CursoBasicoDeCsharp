@@ -5,3 +5,6 @@ Ctrl + K AND Ctrl + D => para formatear el código
 02: Modificadores de Acceso constructores
 --------------------------------------------------------
 ctor + TAB + TAB
+
+03: Clases abstractas y métodos virtuales
+--------------------------------------------------------
