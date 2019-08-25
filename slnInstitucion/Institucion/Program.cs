@@ -3,6 +3,7 @@ using Institucion.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,37 @@ namespace Institucion
     class Program
     {
         static void Main(string[] args)
+        {
+            var listaProfes = new List<Profesor>();
+            string[] lineas = File.ReadAllLines("./Files/Profesores.txt");
+
+            int localId = 0;
+            foreach (var linea in lineas)
+            {
+                listaProfes.Add(new Profesor() { Nombre = linea, Id = localId++ });
+            }
+            foreach (var profesor in listaProfes)
+            {
+                WriteLine(profesor.Nombre);
+            }
+
+            // crear un archivo binario
+            FileStream archivo = File.Open("prefesBinarios.bin", FileMode.OpenOrCreate);
+            var binFile = new BinaryWriter(archivo);
+
+            foreach (var profesor in listaProfes)
+            {
+                //var bytesNombre = Encoding.UTF8.GetBytes(profesor.Nombre);
+                //archivo.Write(bytesNombre, 0, bytesNombre.Length);
+                binFile.Write(profesor.Nombre);
+                binFile.Write(profesor.Id);
+            }
+            binFile.Close();
+            archivo.Close();
+
+            ReadLine();
+        }
+        public static void Rutina6()
         {
             var profesor = new Profesor()
             {
@@ -35,9 +67,7 @@ namespace Institucion
             transmitter.FormatearYEnviar(profesor, (input) => {
                 return new string(input.Reverse().ToArray<char>());
             }, "ALEXTROI");
-            ReadLine();
         }
-
         private static void Transmitter_InformacionEnviada(object sender, EventArgs e)
         {
             Console.WriteLine("TRANSMISION DE INFORMACION"); ;
