@@ -16,6 +16,34 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            if (args != null && args.Length > 0)
+            {
+                foreach (var parametro in args)
+                {
+                    WriteLine(parametro);
+                    WriteLine("===============");
+
+                    switch (parametro)
+                    {
+                        case "Rutina2":
+                            Rutina2();
+                            break;
+                        case "Rutina3":
+                            Rutina3();
+                            break;
+                        case "Rutina5":
+                            Rutina5();
+                            break;
+                        default:
+                            break;
+                    }                   
+                }                
+            }
+                
+            ReadLine();
+        }
+        public static void Rutina9()
+        {
             var listaProfesores = CrearLista();
             var db = new InstitucionDataContext();
 
@@ -28,7 +56,7 @@ namespace Institucion
                               select profe;
 
             foreach (var item in subconjunto)
-            {                
+            {
                 WriteLine(item.Nombre);
             }
             // Actualizar
@@ -43,15 +71,14 @@ namespace Institucion
             WriteLine("Cuantos JM Hay?" + db.Profesores.Where((p) => p.Nombre == "Jose Mauricio").Count());
 
             var profesorBorrable = (from p in db.Profesores
-                                   where p.Nombre == "Jose Mauricio"                                   
-                                   select p).FirstOrDefault();
+                                    where p.Nombre == "Jose Mauricio"
+                                    select p).FirstOrDefault();
 
             db.Profesores.Remove(profesorBorrable);
             db.SaveChanges();
 
             WriteLine("Cuantos JM Quedaron?" + db.Profesores.Where((p) => p.Nombre == "Jose Mauricio").Count());
 
-            ReadLine();
         }
         public static void Rutina8()
         {
