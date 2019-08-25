@@ -1,4 +1,5 @@
-﻿using Institucion.Models;
+﻿using Institucion.Miscelanea;
+using Institucion.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,27 +14,69 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            var profesor = new Profesor()
+            {
+                Id = 12,
+                Nombre = "Mateo",
+                Apellido = "Pereira",
+                CodigoInterno = "PROFE_SMART"
+            };
+            var transmitter = new TransmisorDeDatos();
+            transmitter.InformacionEnviada += Transmitter_InformacionEnviada;
+            transmitter.InformacionEnviada += (obj, evtarg) =>
+            {
+                Console.WriteLine("WAAAAAAOOOOOOOOO");
+            };
+            transmitter.FormatearYEnviar(profesor, formatter, "ALEXTROI");
+            transmitter.FormatearYEnviar(profesor, ReverseFormatter, "ALEXTROI");
+
+            transmitter.InformacionEnviada -= Transmitter_InformacionEnviada;
+            // usando expresiones Lambda
+            transmitter.FormatearYEnviar(profesor, (input) => {
+                return new string(input.Reverse().ToArray<char>());
+            }, "ALEXTROI");
+            ReadLine();
+        }
+
+        private static void Transmitter_InformacionEnviada(object sender, EventArgs e)
+        {
+            Console.WriteLine("TRANSMISION DE INFORMACION"); ;
+        }
+
+        private static string ReverseFormatter(string input)
+        {
+            var reversedString = new string(input.Reverse().ToArray<char>());
+            return reversedString;
+        }
+        private static string formatter(string input)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(input);
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static void Rutina5()
+        {
             // Listas
-            ArrayList listaPersonas = new ArrayList();            
+            ArrayList listaPersonas = new ArrayList();
 
             listaPersonas.Add(new Alumno("Francisco", "Huacho") { NickName = "pancho" });
-            listaPersonas.Add(new Profesor() { Nombre="Alberto", Apellido="X" });
+            listaPersonas.Add(new Profesor() { Nombre = "Alberto", Apellido = "X" });
             listaPersonas.Add(new Alumno("Fernando", "Pedroza"));
             listaPersonas.Add(new Profesor() { Nombre = "Mag", Apellido = "X" });
-            listaPersonas.Add(new Alumno("Neto", "Orbe"));                        
+            listaPersonas.Add(new Alumno("Neto", "Orbe"));
 
             foreach (var persona in listaPersonas)
             {
                 if (persona is Alumno)
                 {
-                    var al = (Alumno) persona;
+                    var al = (Alumno)persona;
                     Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
                 }
                 else
                 {
                     var per = persona as Persona;
 
-                    if (per != null)    
+                    if (per != null)
                         WriteLine(per.NombreCompleto);
                 }
             }
@@ -45,8 +88,6 @@ namespace Institucion
             listaDePersonas.Add(new Alumno("Fernando", "Pedroza"));
             listaDePersonas.Add(new Profesor() { Nombre = "Mag", Apellido = "X" });
             listaDePersonas.Add(new Alumno("Neto", "Orbe"));
-
-            ReadLine();
         }
         private static void Rutina4()
         {

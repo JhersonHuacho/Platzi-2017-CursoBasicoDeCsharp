@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Miscelanea\TransmisorDeDatos.cs" />
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\CursoClass.cs" />
     <Compile Include="Models\CursoStruct.cs" />
@@ -58,5 +59,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
