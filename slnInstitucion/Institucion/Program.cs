@@ -15,6 +15,62 @@ namespace Institucion
     {
         static void Main(string[] args)
         {
+            var listaProfesores = CrearLista();
+            IEnumerable<Profesor> consulta = from profe in listaProfesores
+                                             where !profe.Nombre.StartsWith("J")
+                                             && profe.Catedra == "Marketing"
+                                             select profe;
+
+            foreach (var profe in consulta)
+            {
+                WriteLine(profe.Nombre);
+            }
+
+            var consultaDos = from profe in listaProfesores
+                              where !profe.Nombre.StartsWith("J")
+                              && profe.Catedra == "Marketing"
+                              select profe.Id;
+
+            foreach (var item in consultaDos)
+            {
+                WriteLine(item);
+            }
+
+            var consultaTres = from profe in listaProfesores
+                              where !profe.Nombre.StartsWith("J")
+                              && profe.Catedra == "Marketing"
+                              select new {
+                                  IdProfesor = profe.Id,
+                                  Nombre = profe.Nombre.ToUpper(),
+                                  Llave = Guid.NewGuid().ToString()
+                              };
+            foreach (var item in consultaTres)
+            {
+                WriteLine($"IdProfesor = {item.IdProfesor} - Nombre = {item.Nombre} - Llave = {item.Llave}");
+            }
+            ReadLine();
+        }
+        public static List<Profesor> CrearLista()
+        {
+            Random rnd = new Random();
+            var lista = new List<Profesor>();
+            lista.Add(new Profesor() { Nombre = "Juan Carlos", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Jeronimo", Catedra = "Marketing", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Yohanna", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Martha", Catedra = "Marketing", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Jose Mauricio", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Angela", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Walter", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Marco", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Satya", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Terry", Catedra = "Marketing", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Alexander", Id = rnd.Next() });
+            lista.Add(new Profesor() { Nombre = "Sandra", Id = rnd.Next() });
+
+            return lista;
+        }
+        public static void Rutina7()
+        {
             var listaProfes = new List<Profesor>();
             string[] lineas = File.ReadAllLines("./Files/Profesores.txt");
 
@@ -41,8 +97,6 @@ namespace Institucion
             }
             binFile.Close();
             archivo.Close();
-
-            ReadLine();
         }
         public static void Rutina6()
         {
