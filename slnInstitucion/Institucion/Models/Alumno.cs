@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Institucion.Models
 {    
-    class Alumno : Persona
+    public class Alumno : Persona
     {
         public EstadosAlumno Estado { get; set; }
         public string Email { get; set; }

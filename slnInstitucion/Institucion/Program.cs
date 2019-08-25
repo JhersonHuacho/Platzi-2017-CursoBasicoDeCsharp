@@ -1,4 +1,5 @@
-﻿using Institucion.Miscelanea;
+﻿using Institucion.DataAccess;
+using Institucion.Miscelanea;
 using Institucion.Models;
 using System;
 using System.Collections;
@@ -14,6 +15,45 @@ namespace Institucion
     class Program
     {
         static void Main(string[] args)
+        {
+            var listaProfesores = CrearLista();
+            var db = new InstitucionDataContext();
+
+            // Insertar
+            //db.Profesores.AddRange(listaProfesores);
+            //db.SaveChanges();
+
+            var subconjunto = from profe in db.Profesores
+                              where profe.Nombre.StartsWith("J")
+                              select profe;
+
+            foreach (var item in subconjunto)
+            {                
+                WriteLine(item.Nombre);
+            }
+            // Actualizar
+            //foreach (var item in subconjunto)
+            //{
+            //    item.CodigoInterno = "STARTS_WITH_J";
+            //    WriteLine(item.Nombre);
+            //}
+            //db.SaveChanges();
+
+            // Eliminar
+            WriteLine("Cuantos JM Hay?" + db.Profesores.Where((p) => p.Nombre == "Jose Mauricio").Count());
+
+            var profesorBorrable = (from p in db.Profesores
+                                   where p.Nombre == "Jose Mauricio"                                   
+                                   select p).FirstOrDefault();
+
+            db.Profesores.Remove(profesorBorrable);
+            db.SaveChanges();
+
+            WriteLine("Cuantos JM Quedaron?" + db.Profesores.Where((p) => p.Nombre == "Jose Mauricio").Count());
+
+            ReadLine();
+        }
+        public static void Rutina8()
         {
             var listaProfesores = CrearLista();
             IEnumerable<Profesor> consulta = from profe in listaProfesores
@@ -37,18 +77,18 @@ namespace Institucion
             }
 
             var consultaTres = from profe in listaProfesores
-                              where !profe.Nombre.StartsWith("J")
-                              && profe.Catedra == "Marketing"
-                              select new {
-                                  IdProfesor = profe.Id,
-                                  Nombre = profe.Nombre.ToUpper(),
-                                  Llave = Guid.NewGuid().ToString()
-                              };
+                               where !profe.Nombre.StartsWith("J")
+                               && profe.Catedra == "Marketing"
+                               select new
+                               {
+                                   IdProfesor = profe.Id,
+                                   Nombre = profe.Nombre.ToUpper(),
+                                   Llave = Guid.NewGuid().ToString()
+                               };
             foreach (var item in consultaTres)
             {
                 WriteLine($"IdProfesor = {item.IdProfesor} - Nombre = {item.Nombre} - Llave = {item.Llave}");
             }
-            ReadLine();
         }
         public static List<Profesor> CrearLista()
         {
@@ -173,7 +213,7 @@ namespace Institucion
             listaDePersonas.Add(new Profesor() { Nombre = "Mag", Apellido = "X" });
             listaDePersonas.Add(new Alumno("Neto", "Orbe"));
         }
-        private static void Rutina4()
+        public static void Rutina4()
         {
             Persona[] arregloPersona = new Persona[5];
 
